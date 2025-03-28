@@ -2,7 +2,7 @@
 
 QuickCert is a certification management application that allows users to sign up, log in, log out, issue certificates, and search for issued certificates.
 
-##✨ Features
+## ✨ Features
 
 🔐 User Authentication: Signup, login, and logout functionality.
 
@@ -44,9 +44,9 @@ Make sure you have the following installed on your system:
 
 Clone the repository:
 ```
-git clone git@github.com:anjitha-0123/DEB_Project-Wonderlog.git
+git clone git@github.com:anjitha-0123/QuickCert-CertificateApp.git
 
-cd Wonderlog
+cd Certi-app
 ```
 ## 🐳Running the Application with Docker
 
