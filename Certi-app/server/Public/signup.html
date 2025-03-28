@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-neutral-200"> 
+    <form onsubmit="handleInput()">
+        <div class="bg-white w-96 rounded-md mx-auto shadow-md ">
+            <h class="text-2xl flex justify-center mt-24 pt-6 text-purple-900  ">Sign Up</h><br>
+            <label for="Name" class="pl-8">Name :</label><br>
+            <input type="text" class=" border-2 ml-8 mt-2 w-64 h-9" id="name" required> <br><br>
+            <label for="Email" class="pl-8">Email :</label><br>
+            <input type="email" class="border-2 ml-8 mt-2 w-64 h-9" id="email" required><br><br>
+            <label for="password" class="pl-8">Password :</label><br>
+            <input type="password" class="border-2 ml-8 mt-2 w-64 h-9"id="password" required><br><br>
+            <label for="UserRole" class="pl-8">User Role:</label><br>
+            <select class="border-2 ml-8 mt-2 w-64 h-9" id="option">
+              <option>Admin</option>
+              <option>User</option>
+            </select><br><br>
+            <button type="submit" class="bg-purple-800 w-20 h-8 rounded-md text-white ml-5">Sign Up</button><br><br>
+          <div class=" flex justify-center">
+            <p class="">Alreday have an account?</p>
+            <a href="login.html" class=" mb-8 text-purple-900 ">Login</a>
+          </div>
+        </div>
+    </form>    
+</body>
+<script>
+  async function handleInput(){
+    event.preventDefault();
+    let name=document.getElementById("name").value;
+    let email=document.getElementById("email").value;
+    let password=document.getElementById("password").value;
+    let userrole=document.getElementById("option").value;
+
+    const response=await fetch('http://127.0.0.1:8000/signup',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        Name:name,
+        Email:email,
+        Password:password,
+        UserRole:userrole
+      })
+    });
+    console.log(response.status);
+    const data=await response.text();
+    console.log(data);
+
+    if(response.status==201)
+    {
+      alert("Signed Up SuccessFully")
+      window.location.href="login.html";
+    }
+    else if(response.status==400)
+    {
+      alert("UserName ALready EXist")
+    }
+    else{
+      alert("Try After Sometimes")
+    }
+    
+  }
+</script>
+</html>
